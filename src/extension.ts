@@ -196,8 +196,18 @@ export class Incrementor {
                 if (decPlaces.isInteger() && decPlaces.greaterThan(0)) {
                     partNumber = partNumber.round(decPlaces.toNumber());
                 }
-
-                const wordChanged = partNumber.toString() + partText;
+                
+                let fixed
+                if (wordReg[1].indexOf('.') !== -1) {
+                    fixed = wordReg[1].length - wordReg[1].indexOf('.') - 1
+                } else if (partNumber.toString().indexOf('.') !== -1) {
+                    let _strPN = partNumber.toString()
+                    fixed = _strPN.length - _strPN.indexOf('.') - 1
+                } else {
+                    fixed = 0
+                }
+                const wordChanged = partNumber.toFixed(fixed) + partText;
+//                 const wordChanged = partNumber.toString() + partText;
 
                 return this.replace(tempRange, wordChanged);
             } else {
