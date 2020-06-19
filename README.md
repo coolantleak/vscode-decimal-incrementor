@@ -1,3 +1,13 @@
+# Changes
+
+This is a fork of 
+https://github.com/nmsmith22389/vscode-incrementor
+
+- Fixed scales (one, tenth, ten) were replaced by configurable generic scales (small, medium, big)
+- Limits for each scale were virtually removed
+
+The motivation for this fork is being able to use this extension for GLSL shader development where decimal unrestricted values needed to be supported
+
 # **Incrementor** *(VSCode Extension)*
 
 > Increment or decrement just about anything!
@@ -23,7 +33,7 @@
 
 ![Numbers](images/demo-number.gif)
 
-Numbers can be incremented or decremented by 1, 0.1, or 10. This works with integers, decimals, and negatives alike. The only *real* condition is that it is a **finite** number.
+Numbers can be incremented or decremented by any value, configurable via `settings.json`. This works with integers, decimals, and negatives alike. The only *real* condition is that it is a **finite** number.
 
 ### Enumerators
 
@@ -59,12 +69,12 @@ For this example we will be incrementing a number.
 
 *In the Command Palette (Cmd+Shift+P)*
 
-* `Incrementor: Increment by 1`
-* `Incrementor: Decrement by 1`
-* `Incrementor: Increment by 0.1`
-* `Incrementor: Decrement by 0.1`
-* `Incrementor: Increment by 10`
-* `Incrementor: Decrement by 10`
+* `Incrementor: Increment (Small)`
+* `Incrementor: Decrement (Small)`
+* `Incrementor: Increment (Medium)`
+* `Incrementor: Decrement (Medium)`
+* `Incrementor: Increment (Big)`
+* `Incrementor: Decrement (Big)`
 
 ## Extension Settings
 
@@ -75,47 +85,14 @@ Enables or disables Incrementor.
 * **Default:** true
 * **Must be:** Boolean
 
-### `incrementor.incByOneValue`
+### `incrementor.inc*` and `incrementor.dec*`
 
-The value *(ones place)* to increment a number by.
+Increment a value under the cursor.
+There are 3 configurable scales mapped to keyboard shortcuts (see keybindings)
 
-* **Default:** 1
-* **Must be:** 1 to 9, Integer
-
-### `incrementor.decByOneValue`
-
-The value *(ones place)* to decrement a number by.
-
-* **Default:** -1
-* **Must be:** -1 to -9, Integer
-
-### `incrementor.incByTenthValue`
-
-The value *(tenths place)* to increment a number by
-
-* **Default:** 0.1
-* **Must be:** 0.1 to 0.9, Tenths place only
-
-### `incrementor.decByTenthValue`
-
-The value *(tenths place)* to decrement a number by
-
-* **Default:** -0.1
-* **Must be:** -0.1 to -0.9, Tenths place only
-
-### `incrementor.incByTenValue`
-
-The value *(tens place)* to increment a number by.
-
-* **Default:** 10
-* **Must be:** 10 to 90, Factor of 10
-
-### `incrementor.decByTenValue`
-
-The value *(tens place)* to decrement a number by.
-
-* **Default:** -10
-* **Must be:** -10 to -90, Factor of 10
+* **Small** defaults to 0.01
+* **Medium** defaults to 0.10
+* **Big** defaults to 1.00
 
 ### `incrementor.decimalPlaces`
 
@@ -149,27 +126,27 @@ For now, default keybindings aren't being included but these are the ones I use.
 
 ```json
 {
-  "command": "incrementor.incByOne",
+  "command": "incrementor.incSmall",
   "key": "ctrl+up"
 },
 {
-  "command": "incrementor.decByOne",
+  "command": "incrementor.decSmall",
   "key": "ctrl+down"
 },
 {
-  "command": "incrementor.incByTenth",
+  "command": "incrementor.incMedium",
   "key": "ctrl+alt+up"
 },
 {
-  "command": "incrementor.decByTenth",
+  "command": "incrementor.decMedium",
   "key": "ctrl+alt+down"
 },
 {
-  "command": "incrementor.incByTen",
+  "command": "incrementor.incBig",
   "key": "ctrl+alt+cmd+up"
 },
 {
-  "command": "incrementor.decByTen",
+  "command": "incrementor.decBig",
   "key": "ctrl+alt+cmd+down"
 }
 ```
