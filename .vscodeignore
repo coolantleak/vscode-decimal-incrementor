@@ -1,5 +1,7 @@
+node_modules
 .vscode/**
 .vscode-test/**
+out/
 out/test/**
 test/**
 src/**
@@ -11,3 +13,4 @@ tslint.json
 typings.json
 typings/**
 vsc-extension-quickstart.md
+webpack.config.js

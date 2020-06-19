@@ -2,9 +2,8 @@
   "name": "decimal-incrementor",
   "displayName": "Decimal Incrementor ",
   "description": "Increment / decrement decimal values from your keyboard",
-  "icon": "images/icon.svg",
   "version": "0.2.0",
-  "publisher": "Max Silva",
+  "publisher": "coolantleak",
   "galleryBanner": {
     "color": "#E1F5FE",
     "theme": "light"
@@ -35,7 +34,7 @@
   "engines": {
     "vscode": "^1.5.0"
   },
-  "main": "./out/src/extension",
+  "main": "./dist/extension",
   "activationEvents": [
     "onCommand:incrementor.incSmall",
     "onCommand:incrementor.decSmall",
@@ -57,7 +56,7 @@
         "incrementor.incSmallValue": {
           "type": "number",
           "default": 0.01,
-          "maximum": 1000.0,
+          "maximum": 1000,
           "minimum": 0.0001,
           "description": "Value to increment by (Small)"
         },
@@ -65,13 +64,13 @@
           "type": "number",
           "default": -0.01,
           "maximum": -0.0001,
-          "minimum": -1000.0,
+          "minimum": -1000,
           "description": "Value to decrement by (Small)"
         },
         "incrementor.incMediumValue": {
           "type": "number",
           "default": 0.1,
-          "maximum": 1000.0,
+          "maximum": 1000,
           "minimum": 0.0001,
           "description": "Value to increment by (Medium)"
         },
@@ -79,23 +78,23 @@
           "type": "number",
           "default": -0.1,
           "maximum": -0.0001,
-          "minimum": -1000.0,
+          "minimum": -1000,
           "description": "Value to decrement by (Medium)"
         },
         "incrementor.incBigValue": {
           "type": "number",
-          "default": 1.0,
-          "maximum": 1000.0,
+          "default": 1,
+          "maximum": 1000,
           "minimum": 0.0001,
-          "multipleOf": 1.0,
+          "multipleOf": 1,
           "description": "Value to increment by (Big)"
         },
         "incrementor.decBigValue": {
           "type": "number",
-          "default": -1.0,
+          "default": -1,
           "maximum": -0.0001,
-          "minimum": -1000.0,
-          "multipleOf": 1.0,
+          "minimum": -1000,
+          "multipleOf": 1,
           "description": "Value to decrement by (Big)"
         },
         "incrementor.decimalPlaces": {
@@ -193,10 +192,13 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "node ./node_modules/vscode/bin/test"
+    "test": "node ./node_modules/vscode/bin/test",
+    "vscode:prepublish": "webpack --mode production",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "test-compile": "tsc -p ./"
   },
   "devDependencies": {
     "@types/chai": "^3.4.34",
@@ -205,10 +207,13 @@
     "@types/node": "^7.0.5",
     "chai": "^3.5.0",
     "mocha": "^2.3.3",
+    "ts-loader": "^7.0.5",
     "tslint": "^4.4.2",
     "tslint-eslint-rules": "^3.2.3",
     "typescript": "^2.0.3",
-    "vscode": "^1.0.0"
+    "vscode": "^1.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "bignumber.js": "^4.0.0",
