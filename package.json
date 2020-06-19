@@ -37,12 +37,12 @@
   },
   "main": "./out/src/extension",
   "activationEvents": [
-    "onCommand:incrementor.incByOne",
-    "onCommand:incrementor.decByOne",
-    "onCommand:incrementor.incByTenth",
-    "onCommand:incrementor.decByTenth",
-    "onCommand:incrementor.incByTen",
-    "onCommand:incrementor.decByTen"
+    "onCommand:incrementor.incSmall",
+    "onCommand:incrementor.decSmall",
+    "onCommand:incrementor.incMedium",
+    "onCommand:incrementor.decMedium",
+    "onCommand:incrementor.incBig",
+    "onCommand:incrementor.decBig"
   ],
   "contributes": {
     "configuration": {
@@ -54,49 +54,49 @@
           "default": true,
           "description": "Enables or disables Incrementor."
         },
-        "incrementor.incByOneValue": {
-          "type": "integer",
-          "default": 1,
-          "maximum": 9,
-          "minimum": 1,
-          "description": "The value (ones place) to increment a number by."
+        "incrementor.incSmallValue": {
+          "type": "number",
+          "default": 0.01,
+          "maximum": 1000.0,
+          "minimum": 0.0001,
+          "description": "Value to increment by (Small)"
         },
-        "incrementor.decByOneValue": {
-          "type": "integer",
-          "default": -1,
-          "maximum": -1,
-          "minimum": -9,
-          "description": "The value (ones place) to decrement a number by."
+        "incrementor.decSmallValue": {
+          "type": "number",
+          "default": -0.01,
+          "maximum": -0.0001,
+          "minimum": -1000.0,
+          "description": "Value to decrement by (Small)"
         },
-        "incrementor.incByTenthValue": {
+        "incrementor.incMediumValue": {
           "type": "number",
           "default": 0.1,
-          "maximum": 0.9,
-          "minimum": 0.1,
-          "description": "The value (tenths place) to increment a number by."
+          "maximum": 1000.0,
+          "minimum": 0.0001,
+          "description": "Value to increment by (Medium)"
         },
-        "incrementor.decByTenthValue": {
+        "incrementor.decMediumValue": {
           "type": "number",
           "default": -0.1,
-          "maximum": -0.1,
-          "minimum": -0.9,
-          "description": "The value (tenths place) to decrement a number by."
+          "maximum": -0.0001,
+          "minimum": -1000.0,
+          "description": "Value to decrement by (Medium)"
         },
-        "incrementor.incByTenValue": {
-          "type": "integer",
-          "default": 10,
-          "maximum": 90,
-          "minimum": 10,
-          "multipleOf": 10,
-          "description": "The value (tens place) to increment a number by."
+        "incrementor.incBigValue": {
+          "type": "number",
+          "default": 1.0,
+          "maximum": 1000.0,
+          "minimum": 0.0001,
+          "multipleOf": 1.0,
+          "description": "Value to increment by (Big)"
         },
-        "incrementor.decByTenValue": {
-          "type": "integer",
-          "default": -10,
-          "maximum": -10,
-          "minimum": -90,
-          "multipleOf": 10,
-          "description": "The value (tens place) to decrement a number by."
+        "incrementor.decBigValue": {
+          "type": "number",
+          "default": -1.0,
+          "maximum": -0.0001,
+          "minimum": -1000.0,
+          "multipleOf": 1.0,
+          "description": "Value to decrement by (Big)"
         },
         "incrementor.decimalPlaces": {
           "type": "integer",
@@ -135,59 +135,59 @@
     },
     "commands": [
       {
-        "command": "incrementor.incByOne",
-        "title": "Increment by 1",
+        "command": "incrementor.incSmall",
+        "title": "Increment (Small)",
         "category": "Incrementor"
       },
       {
-        "command": "incrementor.decByOne",
-        "title": "Decrement by 1",
+        "command": "incrementor.decSmall",
+        "title": "Decrement (Small)",
         "category": "Incrementor"
       },
       {
-        "command": "incrementor.incByTenth",
-        "title": "Increment by 0.1",
+        "command": "incrementor.incMedium",
+        "title": "Increment (Medium)",
         "category": "Incrementor"
       },
       {
-        "command": "incrementor.decByTenth",
-        "title": "Decrement by 0.1",
+        "command": "incrementor.decMedium",
+        "title": "Decrement (Medium)",
         "category": "Incrementor"
       },
       {
-        "command": "incrementor.incByTen",
-        "title": "Increment by 10",
+        "command": "incrementor.incBig",
+        "title": "Increment (Big)",
         "category": "Incrementor"
       },
       {
-        "command": "incrementor.decByTen",
-        "title": "Decrement by 10",
+        "command": "incrementor.decBig",
+        "title": "Decrement (Big)",
         "category": "Incrementor"
       }
     ],
     "keybindings": [
       {
-        "command": "incrementor.incByOne",
+        "command": "incrementor.incSmall",
         "key": "ctrl+up"
       },
       {
-        "command": "incrementor.decByOne",
+        "command": "incrementor.decSmall",
         "key": "ctrl+down"
       },
       {
-        "command": "incrementor.incByTenth",
+        "command": "incrementor.incMedium",
         "key": "ctrl+alt+up"
       },
       {
-        "command": "incrementor.decByTenth",
+        "command": "incrementor.decMedium",
         "key": "ctrl+alt+down"
       },
       {
-        "command": "incrementor.incByTen",
+        "command": "incrementor.incBig",
         "key": "ctrl+alt+cmd+up"
       },
       {
-        "command": "incrementor.decByTen",
+        "command": "incrementor.decBig",
         "key": "ctrl+alt+cmd+down"
       }
     ]
