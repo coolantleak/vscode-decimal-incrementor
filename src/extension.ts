@@ -15,36 +15,37 @@ export function activate(context: vscode.ExtensionContext) {
 
     const inc = new Incrementor();
 
-    const comIncOne = vscode.commands.registerCommand('incrementor.incByOne', () => {
-        inc.run(inc.action.incByOne);
+    const comIncSmall = vscode.commands.registerCommand('incrementor.incSmall', () => {
+        inc.run(inc.action.incSmall);
     });
 
-    const comDecOne = vscode.commands.registerCommand('incrementor.decByOne', () => {
-        inc.run(inc.action.decByOne);
+    const comDecSmall = vscode.commands.registerCommand('incrementor.decSmall', () => {
+        inc.run(inc.action.decSmall);
     });
 
-    const comIncTenth = vscode.commands.registerCommand('incrementor.incByTenth', () => {
-        inc.run(inc.action.incByTenth);
+    const comIncMedium = vscode.commands.registerCommand('incrementor.incMedium', () => {
+        inc.run(inc.action.incMedium);
     });
 
-    const comDecTenth = vscode.commands.registerCommand('incrementor.decByTenth', () => {
-        inc.run(inc.action.decByTenth);
+    const comDecMedium = vscode.commands.registerCommand('incrementor.decMedium', () => {
+        inc.run(inc.action.decMedium);
     });
 
-    const comIncTen = vscode.commands.registerCommand('incrementor.incByTen', () => {
-        inc.run(inc.action.incByTen);
+
+    const comIncBig = vscode.commands.registerCommand('incrementor.incBig', () => {
+        inc.run(inc.action.incBig);
     });
 
-    const comDecTen = vscode.commands.registerCommand('incrementor.decByTen', () => {
-        inc.run(inc.action.decByTen);
+    const comDecBig = vscode.commands.registerCommand('incrementor.decBig', () => {
+        inc.run(inc.action.decBig);
     });
 
-    context.subscriptions.push(comIncOne);
-    context.subscriptions.push(comDecOne);
-    context.subscriptions.push(comIncTenth);
-    context.subscriptions.push(comDecTenth);
-    context.subscriptions.push(comIncTen);
-    context.subscriptions.push(comDecTen);
+    context.subscriptions.push(comIncMedium);
+    context.subscriptions.push(comDecMedium);
+    context.subscriptions.push(comIncSmall);
+    context.subscriptions.push(comDecSmall);
+    context.subscriptions.push(comIncBig);
+    context.subscriptions.push(comDecBig);
 }
 
 /**
@@ -77,12 +78,12 @@ export class Incrementor {
     private replaceRanges: Selection[];
     private settings     = vscode.workspace.getConfiguration('incrementor');
     public action = {
-        incByOne:   1,
-        decByOne:   -1,
-        incByTenth: 0.1,
-        decByTenth: -0.1,
-        incByTen:   10,
-        decByTen:   -10
+        incSmall: 0.01,
+        decSmall: -0.01,
+        incMedium:   0.10,
+        decMedium:   -0.10,
+        incBig:   1.00,
+        decBig:   -1.00
     };
     private hiddenSels: {
         isOn: boolean;
@@ -152,13 +153,13 @@ export class Incrementor {
         this.settings = vscode.workspace.getConfiguration('incrementor');
 
         this.action = {
-            incByOne: this.settings['incByOneValue'] || 1,
-            decByOne: this.settings['decByOneValue'] || -1,
-            incByTenth: (/^(?:[01](?:\.0)?|0\.[1-9])$/.test(this.settings['incByTenthValue'])) ? this.settings['incByTenthValue'] : 0.1,
-            decByTenth: (/^(?:[01](?:\.0)?|0\.[1-9])$/.test(this.settings['decByTenthValue'])) ? this.settings['decByTenthValue'] : -0.1,
-            incByTen: this.settings['incByTenValue'] || 10,
-            decByTen: this.settings['decByTenValue'] || -10
-        };
+			incSmall: (/^(?:[01](?:\.0)?|0\.[1-9])$/.test(this.settings['incSmallValue'])) ? this.settings['incSmallValue'] : 0.01,
+			decSmall: (/^(?:[01](?:\.0)?|0\.[1-9])$/.test(this.settings['decSmallValue'])) ? this.settings['decSmallValue'] : -0.01,
+			incMedium: this.settings["incMediumValue"] || 0.10,
+			decMedium: this.settings["decMediumValue"] || -0.10,
+			incBig: this.settings["incBigValue"] || 1.00,
+			decBig: this.settings["decBigValue"] || -1.00,
+		};
     }
 
     /**
@@ -264,7 +265,7 @@ export class Incrementor {
                     const eIndex = _.indexOf(enums, tempString);
 
                     // Cycle enums
-                    if (this.delta === this.action.incByOne) {
+                    if (this.delta === this.action.incMedium) {
                         if (enums.length - 1 === eIndex && this.settings['loopEnums']) {
                             // Is last, Cycle around
                             wordChanged = enums[0];
@@ -274,7 +275,7 @@ export class Incrementor {
                         } else {
                             wordChanged = enums[eIndex + 1];
                         }
-                    } else if (this.delta === this.action.decByOne) {
+                    } else if (this.delta === this.action.decMedium) {
                         if (eIndex === 0 && this.settings['loopEnums']) {
                             // Is last, Cycle around
                             wordChanged = enums[enums.length - 1];
@@ -323,11 +324,11 @@ export class Incrementor {
 
             let tempNumber = new BigNumber(this.wordString);
             if (rangeA && this.wordRange.isEqual(rangeA)) {
-                if (this.delta === this.action.incByTenth || this.delta === this.action.decByTenth) {
+                if (this.delta === this.action.incSmall || this.delta === this.action.decSmall) {
                     tempNumber = new BigNumber(_.clamp(tempNumber.plus(this.delta).toNumber(), 0, 1));
                 }
             } else {
-                if (this.delta !== this.action.incByTenth || this.delta !== this.action.decByTenth) {
+                if (this.delta !== this.action.incSmall || this.delta !== this.action.decSmall) {
                     tempNumber = new BigNumber(_.clamp(tempNumber.plus(this.delta).toNumber(), 0, 255));
                 }
             }
