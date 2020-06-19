@@ -1,14 +1,8 @@
-# Changes
+# **Decimal Incrementor** *(VSCode Extension)*
 
-This is a fork of 
-https://github.com/nmsmith22389/vscode-incrementor
+This is based on a fork from https://github.com/boriskrg/vscode-incrementor and it was adapted for GLSL shader development where decimal and unclamped values were needed.
 
-- Fixed scales (one, tenth, ten) were replaced by configurable generic scales (small, medium, big)
-- Limits for each scale were virtually removed
-
-The motivation for this fork is being able to use this extension for GLSL shader development where decimal unrestricted values needed to be supported
-
-# **Incrementor** *(VSCode Extension)*
+Fixed scales (one, tenth, ten) were replaced by configurable generic scales (small, medium, big). See ChangeLog for more information.
 
 > Increment or decrement just about anything!
 

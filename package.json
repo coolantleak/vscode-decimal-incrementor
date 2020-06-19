@@ -1,23 +1,23 @@
 {
-  "name": "incrementor",
-  "displayName": "Incrementor",
-  "description": "Advanced increment / decrement actions for just about anything!",
+  "name": "decimal-incrementor",
+  "displayName": "Decimal Incrementor ",
+  "description": "Increment / decrement decimal values from your keyboard",
   "icon": "images/icon.svg",
-  "version": "0.1.0",
-  "publisher": "nmsmith89",
+  "version": "0.2.0",
+  "publisher": "Max Silva",
   "galleryBanner": {
     "color": "#E1F5FE",
     "theme": "light"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/nmsmith22389/vscode-incrementor/issues",
-    "email": "nmsmith22389@gmail.com"
+    "url": "https://github.com/coolantleak/decimal-incrementor/issues",
+    "email": "maxisilva@gmail.com"
   },
-  "homepage": "https://github.com/nmsmith22389/vscode-incrementor",
+  "homepage": "https://github.com/coolantleak/decimal-incrementor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nmsmith22389/vscode-incrementor.git"
+    "url": "https://github.com/coolantleak/decimal-incrementor.git"
   },
   "categories": [
     "Formatters",
